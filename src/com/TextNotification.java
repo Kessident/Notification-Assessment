@@ -23,8 +23,8 @@ public class TextNotification extends Notification {
     public void transport() {
         System.out.println("Recipient: " + recipient);
         System.out.println("smsProvider: " + smsProvider);
-        System.out.println("LocalTime: " + super.getCreatedAt());
-        System.out.println("Subject: " + super.getSubject());
-        System.out.println("Body: " + super.getBody());
+        System.out.println("LocalTime: " + getCreatedAt());
+        System.out.println("Subject: " + getSubject());
+        System.out.println("Body: " + getBody());
     }
 }

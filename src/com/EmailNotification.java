@@ -23,9 +23,9 @@ public class EmailNotification extends Notification {
     public void transport() {
         System.out.println("Recipient: " + recipient);
         System.out.println("smtpProvider: " + smtpProvider);
-        System.out.println("LocalTime: " + super.getCreatedAt());
-        System.out.println("Subject: " + super.getSubject());
-        System.out.println("Body: " + super.getBody());
+        System.out.println("LocalTime: " + getCreatedAt());
+        System.out.println("Subject: " + getSubject());
+        System.out.println("Body: " + getBody());
     }
 
     @Override
@@ -35,17 +35,26 @@ public class EmailNotification extends Notification {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EmailNotification that = (EmailNotification) o;
+
+        if (recipient != null ? !recipient.equals(that.recipient) : that.recipient != null) return false;
+        return smtpProvider != null ? smtpProvider.equals(that.smtpProvider) : that.smtpProvider == null;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = recipient != null ? recipient.hashCode() : 0;
+        result = 31 * result + (smtpProvider != null ? smtpProvider.hashCode() : 0);
+        return result;
     }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return this;
+        EmailNotification newEmail = new EmailNotification(getSubject(), getBody(), getRecipient(), getSmtpProvider());
+        return newEmail;
     }
 }
